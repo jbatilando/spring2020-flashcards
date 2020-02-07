@@ -38,25 +38,45 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="sSL-Mb-Np7" appends="YES" id="CsI-zb-5Dn"/>
-                                </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Jt-AHL">
+                                <rect key="frame" x="20" y="510" width="374" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="New York"/>
+                                <connections>
+                                    <action selector="didTapFirstButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iFo-KU-3rb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9J-GI-key">
+                                <rect key="frame" x="20" y="706" width="374" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Canada"/>
+                                <connections>
+                                    <action selector="didTapThirdButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eqc-vg-VR5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kb6-bS-GeD">
+                                <rect key="frame" x="20" y="603" width="374" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Brasília"/>
+                                <connections>
+                                    <action selector="didTapSecondButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LW5-Kx-VFW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="backLabel" destination="DS1-uU-1wa" id="Fva-Hh-DN7"/>
+                        <outlet property="card" destination="eHQ-RN-KaQ" id="ERr-S4-cnI"/>
+                        <outlet property="firstButton" destination="UJW-Jt-AHL" id="WHM-4h-kIb"/>
                         <outlet property="frontLabel" destination="t6r-1Z-c7B" id="sEN-yL-ejq"/>
+                        <outlet property="secondButton" destination="kb6-bS-GeD" id="OUq-ro-zoM"/>
+                        <outlet property="thirdButton" destination="j9J-GI-key" id="XAD-cw-thA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="sSL-Mb-Np7">
-                    <connections>
-                        <action selector="didTapOnFlashcards:" destination="BYZ-38-t0r" id="kvS-aY-BSK"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="114.50892857142857"/>
         </scene>
