@@ -40,6 +40,10 @@ class ViewController: UIViewController {
         self.thirdButton.layer.cornerRadius = 20.0
     }
     
+    func updateFlashcard(question: String, answer: String) {
+        
+    }
+    
     @IBAction func didTapFirstButton(_ sender: Any) {
         self.firstButton.isHidden = true
     }
@@ -50,6 +54,12 @@ class ViewController: UIViewController {
     
     @IBAction func didTapThirdButton(_ sender: Any) {
         self.thirdButton.isHidden = true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navigationController = segue.destination as! UINavigationController
+        let creationController = navigationController.topViewController as! CreationViewController
+        creationController.flashcardsViewController = self
     }
 }
 

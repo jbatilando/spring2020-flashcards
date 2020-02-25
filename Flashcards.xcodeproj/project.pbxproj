@@ -15,6 +15,7 @@
 		621D849C23ECF9880046261C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621D849A23ECF9880046261C /* LaunchScreen.storyboard */; };
 		621D84A723ECF9890046261C /* FlashcardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621D84A623ECF9890046261C /* FlashcardsTests.swift */; };
 		621D84B223ECF9890046261C /* FlashcardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621D84B123ECF9890046261C /* FlashcardsUITests.swift */; };
+		62F4E21B2405A31D00CBF911 /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F4E21A2405A31D00CBF911 /* CreationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		621D84AD23ECF9890046261C /* FlashcardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlashcardsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		621D84B123ECF9890046261C /* FlashcardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsUITests.swift; sourceTree = "<group>"; };
 		621D84B323ECF9890046261C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62F4E21A2405A31D00CBF911 /* CreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				621D849123ECF9870046261C /* SceneDelegate.swift */,
 				621D849323ECF9870046261C /* ViewController.swift */,
 				621D849523ECF9870046261C /* Main.storyboard */,
+				62F4E21A2405A31D00CBF911 /* CreationViewController.swift */,
 				621D849823ECF9880046261C /* Assets.xcassets */,
 				621D849A23ECF9880046261C /* LaunchScreen.storyboard */,
 				621D849D23ECF9880046261C /* Info.plist */,
@@ -262,6 +265,7 @@
 				621D849423ECF9870046261C /* ViewController.swift in Sources */,
 				621D849023ECF9870046261C /* AppDelegate.swift in Sources */,
 				621D849223ECF9870046261C /* SceneDelegate.swift in Sources */,
+				62F4E21B2405A31D00CBF911 /* CreationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
