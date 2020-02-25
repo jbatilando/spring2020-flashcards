@@ -37,6 +37,8 @@ class CreationViewController: UIViewController {
     @IBAction func didTapOnDone(_ sender: Any) {
         let questionText = questionTextField.text
         let answerText = answerTextField.text
+        let firstExtraAnswer = firstExtraAnswerTextField.text ?? ""
+        let secondExtraAnswer = secondExtraAnswerTextField.text ?? ""
         
         if questionText == nil || answerText == nil || questionText!.isEmpty || answerText!.isEmpty {
             let alert = UIAlertController(title: "Missing Text", message: "Please enter text", preferredStyle: .alert)
@@ -45,7 +47,7 @@ class CreationViewController: UIViewController {
             alert.addAction(okAction)
         }
         else {
-            flashcardsViewController.updateFlashcard(question: questionText!, answer: answerText!, firstExtraAnswer: "lol", secondExtraAnswer: "LOL")
+            flashcardsViewController.updateFlashcard(question: questionText!, answer: answerText!, firstExtraAnswer: firstExtraAnswer, secondExtraAnswer: secondExtraAnswer)
             dismiss(animated: true)
         }
     
