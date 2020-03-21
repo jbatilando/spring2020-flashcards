@@ -26,8 +26,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var cardView: UIView!
     
+    
     var flashcards = [Flashcard]()
     var currentIndex = 0
+    var correctAnswerButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,12 +105,13 @@ class ViewController: UIViewController {
         
         print("Current index: \(self.currentIndex)")
         
-        self.updateNextPrevButtons()
         self.updateLabels()
+        self.updateNextPrevButtons()
         
-        self.firstButton.setTitle(firstExtraAnswer, for: .normal)
-        self.secondButton.setTitle(answer, for: .normal)
-        self.thirdButton.setTitle(secondExtraAnswer, for: .normal)
+        
+        // self.firstButton.setTitle(firstExtraAnswer, for: .normal)
+        // self.secondButton.setTitle(answer, for: .normal)
+        // self.thirdButton.setTitle(secondExtraAnswer, for: .normal)
         
         
         self.saveFlashcardsToDisk()
@@ -129,16 +132,31 @@ class ViewController: UIViewController {
         else {
             self.prevButton.isEnabled = true
         }
+        
+        // self.firstButton.isEnabled = true
+        // self.secondButton.isEnabled = true
+        // self.thirdButton.isEnabled = true
     }
     
     func updateLabels() {
         let currentFlashcard = self.flashcards[self.currentIndex]
-        print(currentFlashcard)
         self.frontLabel.text = currentFlashcard.question
         self.backLabel.text = currentFlashcard.answer
-        self.firstButton.setTitle(currentFlashcard.extraAnswerOne, for: .normal)
-        self.secondButton.setTitle(currentFlashcard.answer, for: .normal)
-        self.thirdButton.setTitle(currentFlashcard.extraAnswerTwo, for: .normal)
+        
+        // self.firstButton.setTitle(currentFlashcard.extraAnswerOne, for: .normal)
+        // self.secondButton.setTitle(currentFlashcard.answer, for: .normal)
+        // self.thirdButton.setTitle(currentFlashcard.extraAnswerTwo, for: .normal)
+        
+        let buttons = [self.firstButton, self.secondButton, self.thirdButton].shuffled()
+        let answers = [currentFlashcard.answer, currentFlashcard.extraAnswerOne, currentFlashcard.extraAnswerTwo].shuffled()
+        
+        for (button, answer) in zip(buttons, answers) {
+            button?.setTitle(answer, for: .normal)
+            
+            if answer == currentFlashcard.answer {
+                self.correctAnswerButton = button
+            }
+        }
     }
     
     func saveFlashcardsToDisk() {
@@ -212,15 +230,36 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didTapFirstButton(_ sender: Any) {
-        self.firstButton.isHidden = true
+        // self.firstButton.isHidden = true
+        if self.firstButton == correctAnswerButton {
+            flipFlashcard()
+        }
+        else {
+            frontLabel.isHidden = false
+            firstButton.isEnabled = false
+        }
     }
     
     @IBAction func didTapSecondButton(_ sender: Any) {
-        self.frontLabel.isHidden = true
+        // self.frontLabel.isHidden = true
+        if self.secondButton == correctAnswerButton {
+            flipFlashcard()
+        }
+        else {
+            frontLabel.isHidden = false
+            secondButton.isEnabled = false
+        }
     }
     
     @IBAction func didTapThirdButton(_ sender: Any) {
-        self.thirdButton.isHidden = true
+        // self.thirdButton.isHidden = true
+        if self.thirdButton == correctAnswerButton {
+            flipFlashcard()
+        }
+        else {
+            frontLabel.isHidden = false
+            thirdButton.isEnabled = false
+        }
     }
     
     @IBAction func didTapPrev(_ sender: Any) {
@@ -266,10 +305,15 @@ class ViewController: UIViewController {
         creationController.flashcardsViewController = self
         
         if segue.identifier == "editSegue" {
-            creationController.initialQuestion = frontLabel.text
-            creationController.initialAnswer = backLabel.text
-            creationController.extraAnswerOne = firstButton.titleLabel?.text
-            creationController.extraAnswerTwo = secondButton.titleLabel?.text
+             creationController.initialQuestion = frontLabel.text
+             creationController.initialAnswer = backLabel.text
+             creationController.extraAnswerOne = firstButton.titleLabel?.text
+             creationController.extraAnswerTwo = secondButton.titleLabel?.text
+        }
+        else if segue.identifier == "addSegue" {
+            let currentFlashcard = self.flashcards[self.currentIndex]
+            creationController.initialQuestion = currentFlashcard.question
+            creationController.initialAnswer = currentFlashcard.answer
         }
     }
 }

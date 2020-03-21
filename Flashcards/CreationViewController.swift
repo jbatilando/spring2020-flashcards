@@ -39,6 +39,7 @@ class CreationViewController: UIViewController {
     }
     
     @IBAction func didTapOnDone(_ sender: Any) {
+        print("Tapped done")
         let questionText = questionTextField.text
         let answerText = answerTextField.text
         let firstExtraAnswer = firstExtraAnswerTextField.text ?? ""
