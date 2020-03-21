@@ -154,6 +154,7 @@ class ViewController: UIViewController {
         })
     }
     
+    // tapped on next
     func animateCardOut() {
         UIView.animate(withDuration: 0.3, animations: {
             self.cardView.transform = CGAffineTransform.identity.translatedBy(x: -300.0, y: 0.0)
@@ -165,6 +166,23 @@ class ViewController: UIViewController {
     
     func animateCardIn() {
         cardView.transform = CGAffineTransform.identity.translatedBy(x: 300.0, y: 0.0)
+        UIView.animate(withDuration: 0.3) {
+            self.cardView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    // tapped on prev
+    func animatePrevCardOut() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.cardView.transform = CGAffineTransform.identity.translatedBy(x: 300.0, y: 0.0)
+        }) { (finished) in
+            self.animatePrevCardIn()
+            self.updateLabels()
+        }
+    }
+    
+    func animatePrevCardIn() {
+        cardView.transform = CGAffineTransform.identity.translatedBy(x: -300.0, y: 0.0)
         UIView.animate(withDuration: 0.3) {
             self.cardView.transform = CGAffineTransform.identity
         }
@@ -186,6 +204,7 @@ class ViewController: UIViewController {
         self.currentIndex -= 1
         self.updateNextPrevButtons()
         self.updateLabels()
+        self.animatePrevCardOut()
     }
     
     @IBAction func didTapNext(_ sender: Any) {
