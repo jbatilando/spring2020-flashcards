@@ -19,6 +19,8 @@ class CreationViewController: UIViewController {
     // MARK: Variables
     var initialQuestion: String?
     var initialAnswer: String?
+    var extraAnswerOne: String?
+    var extraAnswerTwo: String?
 
     // MARK: Lifecycle
     var flashcardsViewController: ViewController!
@@ -26,7 +28,9 @@ class CreationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         questionTextField.text = initialQuestion
-        answerTextField.text = initialAnswer 
+        answerTextField.text = initialAnswer
+        firstExtraAnswerTextField.text = extraAnswerOne
+        secondExtraAnswerTextField.text = extraAnswerTwo
     }
     
     // MARK: IBActions

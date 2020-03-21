@@ -19,12 +19,12 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var frontLabel: UILabel!
     @IBOutlet weak var backLabel: UILabel!
-    @IBOutlet weak var card: UIView!
     @IBOutlet weak var firstButton: UIButton!
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var thirdButton: UIButton!
     @IBOutlet weak var prevButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var cardView: UIView!
     
     var flashcards = [Flashcard]()
     var currentIndex = 0
@@ -43,9 +43,9 @@ class ViewController: UIViewController {
         }
         
         // Card container
-        self.card.layer.cornerRadius = 20.0
-        self.card.layer.shadowRadius = 15.0
-        self.card.layer.shadowOpacity = 0.3
+        self.cardView.layer.cornerRadius = 20.0
+        self.cardView.layer.shadowRadius = 15.0
+        self.cardView.layer.shadowOpacity = 0.3
         
         // Question and answer
         self.frontLabel.clipsToBounds = true
@@ -79,6 +79,7 @@ class ViewController: UIViewController {
         
         
         print("Current index: \(self.currentIndex)")
+        
         self.updateNextPrevButtons()
         self.updateLabels()
         
@@ -86,12 +87,14 @@ class ViewController: UIViewController {
         self.secondButton.setTitle(answer, for: .normal)
         self.thirdButton.setTitle(secondExtraAnswer, for: .normal)
         
+        
         self.saveFlashcardsToDisk()
     }
     
     func updateNextPrevButtons() {
         if currentIndex == flashcards.count - 1 {
-            self.nextButton.isEnabled = false
+            // self.nextButton.isEnabled = false
+            nextButton.isEnabled = false
         }
         else {
             self.nextButton.isEnabled = true
@@ -107,8 +110,12 @@ class ViewController: UIViewController {
     
     func updateLabels() {
         let currentFlashcard = self.flashcards[self.currentIndex]
+        print(currentFlashcard)
         self.frontLabel.text = currentFlashcard.question
         self.backLabel.text = currentFlashcard.answer
+        self.firstButton.setTitle(currentFlashcard.extraAnswerOne, for: .normal)
+        self.secondButton.setTitle(currentFlashcard.answer, for: .normal)
+        self.thirdButton.setTitle(currentFlashcard.extraAnswerTwo, for: .normal)
     }
     
     func saveFlashcardsToDisk() {
@@ -128,6 +135,38 @@ class ViewController: UIViewController {
             })
             
             flashcards.append(contentsOf: savedCards)
+        }
+    }
+    
+    @IBAction func didTapOnFlashcard(_ sender: Any) {
+        self.flipFlashcard()
+    }
+    
+    func flipFlashcard() {
+        UIView.transition(with: cardView, duration: 0.3, options: .transitionFlipFromRight, animations: {
+            if self.frontLabel.isHidden == false {
+                self.frontLabel.isHidden = true
+            }
+            else {
+                self.frontLabel.isHidden = false
+            }
+            
+        })
+    }
+    
+    func animateCardOut() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.cardView.transform = CGAffineTransform.identity.translatedBy(x: -300.0, y: 0.0)
+        }) { (finished) in
+            self.animateCardIn()
+            self.updateLabels()
+        }
+    }
+    
+    func animateCardIn() {
+        cardView.transform = CGAffineTransform.identity.translatedBy(x: 300.0, y: 0.0)
+        UIView.animate(withDuration: 0.3) {
+            self.cardView.transform = CGAffineTransform.identity
         }
     }
     
@@ -152,7 +191,8 @@ class ViewController: UIViewController {
     @IBAction func didTapNext(_ sender: Any) {
         self.currentIndex += 1
         self.updateNextPrevButtons()
-        self.updateLabels()
+        // self.updateLabels()
+        self.animateCardOut()
     }
     
     @IBAction func didTapDelete(_ sender: Any) {
@@ -186,6 +226,8 @@ class ViewController: UIViewController {
         if segue.identifier == "editSegue" {
             creationController.initialQuestion = frontLabel.text
             creationController.initialAnswer = backLabel.text
+            creationController.extraAnswerOne = firstButton.titleLabel?.text
+            creationController.extraAnswerTwo = secondButton.titleLabel?.text
         }
     }
 }

@@ -54,6 +54,9 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="KKG-qM-Ve7" appends="YES" id="jAw-Sl-dsp"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Jt-AHL">
                                 <rect key="frame" x="20" y="510" width="374" height="85"/>
@@ -79,28 +82,30 @@
                                     <action selector="didTapSecondButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LW5-Kx-VFW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AR8-1K-ikh">
-                                <rect key="frame" x="196" y="829" width="23" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSl-aD-P4v">
+                                <rect key="frame" x="20" y="804" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="plus" catalog="system"/>
-                                <connections>
-                                    <segue destination="fkH-ou-0id" kind="presentation" id="09u-H9-VRf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSl-aD-P4v">
-                                <rect key="frame" x="28" y="821" width="31" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Prev"/>
+                                <state key="normal" title="Prev" image="arrowLeft"/>
+                                <state key="disabled" image="arrowLeftDisabled"/>
                                 <connections>
                                     <action selector="didTapPrev:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CNx-qb-BHA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lB8-MW-V6f">
-                                <rect key="frame" x="355" y="821" width="32" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lB8-MW-V6f">
+                                <rect key="frame" x="325" y="804" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Next"/>
+                                <state key="normal" title="Next" image="arrowRight"/>
+                                <state key="disabled" image="arrowRightDisabled"/>
                                 <connections>
                                     <action selector="didTapNext:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6m6-ei-Ib6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AR8-1K-ikh">
+                                <rect key="frame" x="175" y="799" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="addButton"/>
+                                <connections>
+                                    <segue destination="fkH-ou-0id" kind="presentation" id="09u-H9-VRf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -109,7 +114,7 @@
                     </view>
                     <connections>
                         <outlet property="backLabel" destination="DS1-uU-1wa" id="Fva-Hh-DN7"/>
-                        <outlet property="card" destination="eHQ-RN-KaQ" id="ERr-S4-cnI"/>
+                        <outlet property="cardView" destination="eHQ-RN-KaQ" id="GCb-LG-XAb"/>
                         <outlet property="firstButton" destination="UJW-Jt-AHL" id="WHM-4h-kIb"/>
                         <outlet property="frontLabel" destination="t6r-1Z-c7B" id="sEN-yL-ejq"/>
                         <outlet property="nextButton" destination="lB8-MW-V6f" id="NbN-Hs-0Tb"/>
@@ -119,6 +124,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="KKG-qM-Ve7">
+                    <connections>
+                        <action selector="didTapOnFlashcard:" destination="BYZ-38-t0r" id="yWZ-yI-Gng"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="114.50892857142857"/>
         </scene>
@@ -201,8 +211,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="addButton" width="64" height="64"/>
+        <image name="arrowLeft" width="64" height="64"/>
+        <image name="arrowLeftDisabled" width="64" height="64"/>
+        <image name="arrowRight" width="64" height="64"/>
+        <image name="arrowRightDisabled" width="64" height="64"/>
         <image name="pencil" catalog="system" width="64" height="56"/>
-        <image name="plus" catalog="system" width="64" height="56"/>
         <image name="xmark.octagon" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
