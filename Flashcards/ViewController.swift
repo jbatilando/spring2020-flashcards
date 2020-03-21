@@ -65,6 +65,29 @@ class ViewController: UIViewController {
         self.thirdButton.layer.cornerRadius = 20.0
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.cardView.alpha = 0.0
+        self.firstButton.alpha = 0.0
+        self.secondButton.alpha = 0.0
+        self.thirdButton.alpha = 0.0
+        
+        self.cardView.transform = CGAffineTransform.identity.scaledBy(x: 0.75, y: 0.75)
+        self.firstButton.transform = CGAffineTransform.identity.scaledBy(x: 0.75, y: 0.75)
+        self.secondButton.transform = CGAffineTransform.identity.scaledBy(x: 0.75, y: 0.75)
+        self.thirdButton.transform = CGAffineTransform.identity.scaledBy(x: 0.75, y: 0.75)
+        
+        UIView.animate(withDuration: 0.6, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
+            self.cardView.alpha = 1.0
+            self.firstButton.alpha = 1.0
+            self.secondButton.alpha = 1.0
+            self.thirdButton.alpha = 1.0
+            self.cardView.transform = CGAffineTransform.identity
+            self.firstButton.transform = CGAffineTransform.identity
+            self.secondButton.transform = CGAffineTransform.identity
+            self.thirdButton.transform = CGAffineTransform.identity
+        })
+    }
+    
     func updateFlashcard(question: String, answer: String, firstExtraAnswer: String, secondExtraAnswer: String, isExisting: Bool) {
         let flashcard = Flashcard(question: question, answer: answer, extraAnswerOne:  firstExtraAnswer, extraAnswerTwo: secondExtraAnswer)
         
